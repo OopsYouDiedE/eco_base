@@ -36,7 +36,6 @@ import aiofiles.os
 import aioshutil
 from aiocsv import AsyncReader, AsyncDictReader, AsyncWriter, AsyncDictWriter
 
-from market_manager import sell, buy
 from . import market_manager
 
 
@@ -74,7 +73,7 @@ class CoreEconomySystem(interactions.Extension):
     )
     async def sell_item(self, ctx: interactions.SlashContext, item: str, num: int, exchange_item: str,
                         exchange_num: int):
-        ret_id = sell(ctx.user, item, num, exchange_item, exchange_num)
+        ret_id = market_manager.sell(ctx.user, item, num, exchange_item, exchange_num)
         await ctx.send(f"您已经提交订单，销售{item}*{num}，交换物品为{exchange_item}*{exchange_num}，销售id为\n{ret_id}")
 
     # 普通人指令：买产品。
@@ -88,4 +87,4 @@ class CoreEconomySystem(interactions.Extension):
     )
     async def command_send_item(self, ctx: interactions.SlashContext,sell_id:str):
 
-        await ctx.send(f"{buy(ctx.user, sell_id)}")
+        await ctx.send(f"{market_manager.buy(ctx.user, sell_id)}")
