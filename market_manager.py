@@ -60,15 +60,4 @@ def buy(buyer_id, sale_id):
     else:
         print("交易失败，未找到该ID的销售信息。")
 
-# 示例使用
-# 卖家发布销售信息
-seller_id = 'seller123'  # 假设的卖家ID
-sale_id = sell(seller_id, '苹果', 10, '香蕉', 5)
-print(f"销售信息已发布，ID为: {sale_id}")
 
-# 买家执行购买
-buyer_id = 'buyer456'  # 假设的买家ID
-buy(buyer_id, sale_id)
-
-# 关闭数据库连接
-conn.close()
