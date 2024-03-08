@@ -1,4 +1,5 @@
 import sqlite3
+import sys
 from random import randint
 from . import database_manager
 
@@ -10,7 +11,7 @@ cursor = conn.cursor()
 # 创建一个表格用于存储销售信息，包括卖家ID
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS sales (
-    id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     seller_id TEXT NOT NULL,
     item TEXT NOT NULL,
     quantity INTEGER NOT NULL,
@@ -27,7 +28,7 @@ def sell(seller_id, item, quantity, exchange_item, exchange_quantity):
     """卖家使用此函数来发布销售信息"""
     seller_id = str(seller_id)  # 确保ID是字符串
     # 生成一个随机ID
-    sale_id = randint(1000, 9999)
+    sale_id = str(randint(1000, sys.maxsize))
     # 将销售信息插入到数据库
     cursor.execute('''
     INSERT INTO sales (id, seller_id, item, quantity, exchange_item, exchange_quantity)
