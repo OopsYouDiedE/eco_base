@@ -41,7 +41,7 @@ from . import market_manager
 
 class CoreEconomySystem(interactions.Extension):
     module_base: interactions.SlashCommand = interactions.SlashCommand(
-        name="market_economy_system",
+        name="market",
         description="实时在线买卖您的商品！"
     )
 
