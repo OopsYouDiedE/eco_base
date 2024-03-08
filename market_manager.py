@@ -45,10 +45,10 @@ def buy(buyer_id, sale_id):
     cursor.execute('SELECT * FROM sales WHERE id=?', (sale_id,))
     sale = cursor.fetchone()
     if sale:
-        seller_id, item, quantity, exchange_item, exchange_quantity = sale[1], sale[2], sale[3], sale[4], sale[5]
+        sale_id,seller_id, item, quantity, exchange_item, exchange_quantity = sale
         # 检查买家和卖家是否有足够物品
-        if database_manager.query_item(buyer_id, exchange_item) >= exchange_quantity and database_manager.query_item(
-                seller_id, item) >= quantity:
+        if database_manager.query_item(buyer_id, exchange_item)[2] >= exchange_quantity and database_manager.query_item(
+                seller_id, item)[2] >= quantity:
             # 更新买家和卖家的物品数量
             database_manager.update_item(buyer_id, exchange_item, -exchange_quantity)
             database_manager.update_item(seller_id, item, -quantity)
