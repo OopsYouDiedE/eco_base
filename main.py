@@ -83,7 +83,7 @@ class CoreEconomySystem(interactions.Extension):
         name="sell_id",
         description="售单id",
         required=True,
-        opt_type=interactions.OptionType.USER
+        opt_type=interactions.OptionType.STRING
     )
     async def command_send_item(self, ctx: interactions.SlashContext,sell_id:str):
 
